@@ -1,0 +1,44 @@
+{% extends "app/admin_layout.html" %}
+
+{% block content %}
+
+<div class="container_row">
+    <div class="admin_payment">
+        <h2>Payment History</h2>
+        <table border="1">
+            <tr>
+                <th>Bill ID</th>
+                <th>Due Date</th>
+                <th>Bill type</th>
+                <th>Recipient</th>
+                <th>Total Payment</th>
+                <th>Payment Amount</th>
+                <th>Remark</th>
+                <th>Date Done Payment</th>
+                <th>Transaction Status</th>
+            </tr>
+            {% for bill in bills %}
+            {% for payment in bill.payment_set.all %}
+            <tr>
+                <td>{{ bill.bill_id }}</td>
+                <td>{{ bill.due_date }}</td>
+                <td>{{ payment.bill_type }}</td>
+                <td>{{ payment.recipient_name }}</td>
+                <td>{{ payment.total_payment }}</td>
+                <td>{{ payment.payment_amount }}</td>
+                <td>{{ payment.remark }}</td>
+                <td>{{ payment.payment_date }}</td>
+                <td>{{ payment.transaction_status }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+    <div class="input-group">
+        <a href="{% url 'admin_bills' %}" class="assign-button">Assign bill to User</a>
+    </div>
+    <div class="input-group">
+        <button class="btn btn-secondary" onclick="goBack()">Back</button>
+    </div>
+</div>
+{% endblock %}

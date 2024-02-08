@@ -1,0 +1,66 @@
+{% extends "app/admin_layout.html" %}
+
+{% block content %}
+
+<div class="container row">
+    <div class="admin_resource">
+        <h2>Resources</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th></th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Capacity</th>
+                </tr>
+                <tr>
+                    <div class="input-group">
+                        <td>{{ form.resource_name }}</td>
+                        {% if form.resource_name.errors %}
+                        <div class="error">{{ form.resource_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="input-group">
+                        <td>{{ form.resource_id }}</td>
+                        {% if form.resource_id.errors %}
+                        <div class="error">{{ form.resource_id.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="input-group">
+                        <td>{{ form.resource_image }}</td>
+                        {% if form.resource_image.errors %}
+                        <div class="error">{{ form.resource_image.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="input-group">
+                        <td>{{ form.resource_type }}</td>
+                        {% if form.resource_type.errors %}
+                        <div class="error">{{ form.resource_type.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="input-group">
+                        <td>{{ form.resource_status }}</td>
+                        {% if form.resource_status.errors %}
+                        <div class="error">{{ form.resource_status.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="input-group">
+                        <td>{{ form.resource_capacity }}</td>
+                        {% if form.resource_capacity.errors %}
+                        <div class="error">{{ form.resource_capacity.errors }}</div>
+                        {% endif %}
+                    </div>
+                </tr>
+            </table>
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="input-group">
+        <button class="btn btn-secondary" onclick="goBack()">Back</button>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="container sign_up_form" style="margin-left: 40px; top:-590px;">
+    <h2 style="margin-left: 210px;white-space:nowrap">Sign Up</h2>
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <div class="input-group">
+            <label>User ID:</label>
+            {{ form.userid }}
+            {% if form.userid.errors %}
+            <div class="error">{{ form.userid.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Password:</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+            <div class="error">{{ form.password1.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Confirm Password:</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+            <div class="error">{{ form.password2.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>User Name:</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+            <div class="error">{{ form.username.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Room Number:</label>
+            {{ form.room_number }}
+            {% if form.room_number.errors %}
+            <div class="error">{{ form.room_number.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Phone Number:</label>
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+            <div class="error">{{ form.phone_number.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Number of Access Card:</label>
+            {{ form.number_access_card }}
+            {% if form.number_access_card.errors %}
+            <div class="error">{{ form.number_access_card.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-success" style="margin-left:210px">Register</button>
+    </form>
+</div>
+{% endblock %}

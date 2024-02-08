@@ -1,0 +1,66 @@
+{% extends "app/admin_layout.html" %}
+
+{% block content %}
+
+<div class="container row">
+    <div class="admin_resource">
+        <h2>Resources</h2>
+        <form action="{% url 'delete_resources' %}" method="post">
+            {% csrf_token %}
+            <div class="table-wrapper">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">Select</th>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th></th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Capacity</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for resource in resources %}
+                        <tr>
+                            <td><input type="checkbox" name="resource_ids" class="check_box" value="{{ resource.id }}">
+                            </td>
+                            <td>{{ resource.resource_name }}</td>
+                            <td>{{ resource.resource_id }}</td>
+                            <td>
+                                {% if resource.resource_image %}
+                                <img class="admin_resources_images" src="{{ resource.resource_image.url }}"
+                                    alt="Resource Image">
+                                {% else %}
+                                <p>No Image</p>
+                                {% endif %}
+                            </td>
+                            <td>{{ resource.resource_type }}</td>
+                            <td>{{ resource.resource_status }}</td>
+                            <td>{{ resource.resource_capacity }}</td>
+                            <td>
+                                <a href="{% url 'edit_resource' resource.resource_id %}"
+                                    class="btn btn-primary">Edit</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div class="input-group" style="display: flex; justify-content: space-between;">
+        <div>
+            <a href="{% url 'admin_add_resources' %}" class="assign-button">Add new resources</a>
+            <a href="{% url 'admin_check_booking' %}" class="assign-button">Check Booking</a>
+        </div>
+        <button type="submit" class="assign-button">Delete Selected Resources</button>
+    </div>
+
+    <div class="input-group">
+        <a href="{% url 'menu' %}"><button class="btn direct_back">Back</button></a>
+    </div>
+</div>
+
+{% endblock %}

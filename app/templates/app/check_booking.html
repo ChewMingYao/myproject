@@ -1,0 +1,46 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+{%load static%}
+
+<div class="container">
+    <h2>Check Booking</h2>
+
+    {% if user_bookings %}
+    <p>Booking Successful<br /><br />
+        Your booking is confirmed<br />
+        Here are your booking details:<br />
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Booking Resource</th>
+                <th>Booking Date</th>
+                <th>Booking Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in user_bookings %}
+            <tr>
+                <td>{{ booking.resource_fk_id }}</td>
+                <td>{{ booking.date }}</td>
+                <td>{{ booking.time_slot }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        Enjoy your time!<br />
+    </p>
+    {% else %}
+    <p>No bookings found.</p>
+    {% endif %}
+    <div class="input-group">
+        <a href="{% url 'user_resources' %}"><button class="btn direct_back">Back</button></a>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+

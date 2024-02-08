@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - GREEN VIEW APPARTMENT</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/css.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-logo">
+                    <img src='{%static "app/image/logo.png" %}' alt="logo" class="logo">
+                </div>
+                <a href="{% url 'home' %}" class="navbar-brand">GREEN VIEW APPARTMENT</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                {% include 'app/loginpartial.html' %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'bills' %}">Bills</a></li>
+                    <li><a href="{% url 'user_resources' %}">Resources</a></li>
+                    <li><a href="{% url 'incident' %}">Incident Report</a></li>
+                    <li><a href="{% url 'user_details' %}"><img src='{%static "app/image/user_icon.png" %}' alt="user_icon" class="user_icon" height=25px></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        {% block content %}{% endblock %}
+        <footer>
+            <hr />
+            <p>&copy; {{ year }} - Shared Resources System</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+    <script src="{% static 'app/scripts/script.js' %}"></script>
+
+    {% block scripts %}{% endblock %}
+
+</body>
+
+</html>

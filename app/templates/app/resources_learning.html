@@ -1,0 +1,31 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+{%load static%}
+
+<div class="learning">
+    <p style="margin-top: 10px; font-weight:bold; font-size:20px">Learning</p>
+    <img src='{%static "app/image/learning.png" %}' alt="learning icon">
+</div>
+
+<div class="css_container">
+    {% for resource in resources %}
+        {% if resource.resource_status == "Available"%}
+            <div class="{% cycle 'left-block' 'right-block' %}">
+                <a href="{% url 'resources_booking' id=resource.resource_id date=date_now %}">
+                    <p class="title_resources">{{ resource.resource_name }}</p>
+                    {% if resource.resource_image %}
+                    <img src="{{ resource.resource_image.url }}" alt="Resource Image">
+                    {% else %}
+                    <p>No image available</p>
+                    {% endif %}
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</div>
+<div class="input-group">
+    <button class="btn btn-secondary" onclick="goBack()">Back</button>
+</div>
+{% endblock %}

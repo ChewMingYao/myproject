@@ -1,0 +1,60 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{%load static%}
+
+<div class="containerbout">
+    <div class="move-right">
+        <p style="font-size: 30px;" class = "About_Tit">Welcome to Green View Apartment Management System!</p>
+        <br>
+        <p>Residents,
+        We are delighted to welcome you to our exclusive residence management system, designed to enhance your living
+        experience and streamline your interactions with the community. At Green View Appartment, we believe in creating a
+        seamless and efficient environment that caters to your needs.</p>
+        <p></p>
+    </div>
+    <h2>{{ title }}</h2>
+    <div class="about">
+        <h2>Group 2</h2>
+        <table border="1" class="abouttable">
+            <thead>
+                <tr>
+                    <th class="thabout">Student Name</th>
+                    <th class="thabout">Student ID</th>
+                    <th class="thabout">Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chew Ming Yao</td>
+                    <td>1211102825</td>
+                    <td>
+                        <img src='{%static "app/image/Ming_Yao.png" %}' alt="Ming Yao">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Siow Yee Ceng</td>
+                    <td>1211102017</td>
+                    <td>
+                        <img src='{%static "app/image/YeeCeng.png" %}' alt="Yee Ceng">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tan Chi Lim</td>
+                    <td>1211101534</td>
+                    <td>
+                        <img src='{%static "app/image/Chi_Lim.png" %}' alt="Chi Lim">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lo Pei Qin</td>
+                    <td>1211101157</td>
+                    <td>
+                        <img src='{%static "app/image/Pei_Qin.png" %}' alt="Pei Qin">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

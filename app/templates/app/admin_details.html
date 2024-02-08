@@ -1,0 +1,22 @@
+{% extends "app/admin_layout.html" %}
+
+{% block content %}
+
+<div class="container row">
+    <div class="admin_details">
+        <h2>Admin Details</h2>
+        <div class="input-group">
+            <span class="label">Admin ID:</span>
+            <span class="variable" style="margin-left: 40px;" >{{ admins.admin_name }}</span>
+        </div>
+        <div class="input-group">
+            <span class="label">Phone Number:</span>
+            <span class="variable" style="margin-left: -1px;">{{ admins.phone_number }}</span>
+        </div>
+        <div class="input-group">
+            <a href="{% url 'edit_admin_details' %}" class="btn btn-primary">Edit Details</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

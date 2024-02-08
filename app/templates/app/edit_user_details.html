@@ -1,0 +1,52 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+
+<div class="container row">
+    <h2>Edit User Details</h2>
+    <form method="POST" id="editForm">
+        {% csrf_token %}
+        
+        <div class="input-group">
+            <span class="label">Room Number:</span>
+            <span class="variable" style="margin-left: 75px;">{{ form.room_number }}</span>
+        </div>
+
+        <div class="input-group">
+            <span class="label">Phone Number:</span>
+            <span class="variable" style="margin-left: 71px;">{{ form.phone_number }}</span>
+        </div>
+
+        <div class="input-group">
+            <span class="label">Number Of Card Access:</span>
+            <span class="variable" style="margin-left: 7px;">{{ form.number_access_card }}</span>
+        </div>
+        
+        <button class="btn btn-primary" id="saveButton">Save Changes</button>
+        
+        <div class="input-group">
+            <button class="btn btn-secondary" onclick="goBack()" style="width:130px;height:58px">Back</button>
+        </div>
+    </form>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let saveButton = document.getElementById('saveButton');
+        let editForm = document.getElementById('editForm');
+
+        saveButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            showSuccessPrompt();
+        });
+
+        function showSuccessPrompt(){
+            alert('Successfully updated ! ! !')
+            editForm.submit();
+        }
+    });
+</script>
+
+{% endblock %}
+

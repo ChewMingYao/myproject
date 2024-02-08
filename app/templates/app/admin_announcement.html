@@ -1,0 +1,86 @@
+{% extends "app/admin_layout.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container row">
+    <h2 class="announcement_header">History Announcement</h2>
+    <div class="admin_announcement">
+        <div class="container row">
+            <div>
+                <form class="d-flex" role="search" method="POST" action="{% url 'search-ann' %}">
+                    {% csrf_token %}
+                    <div>
+                        <img src='{%static "app/image/search.png" %}' alt="search bar">
+                        <input class="form-control me-2" type="search" placeholder="Search bar..." name="search_query"
+                            required aria-label="Search">
+                    </div>
+                    <button type="submit" class="announcement_submit">Search</button>
+                </form>
+                {% if query %}
+                <div>
+                    <div>
+                        {% if posts %}
+                        {% for post in posts %}
+
+
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <form class="d-flex" method="POST" action="{% url 'search_announcements' %}"
+                onsubmit="hideTopAnnouncements()">
+                {% csrf_token %}
+                <label for="search" class="announcement_search">Search Date:</label>
+                <input class="form-control me-2" type="date" name="searched" placeholder="Select Date"
+                    class="announcement_date">
+                <button type="submit" class="announcement_submit">Search</button>
+            </form>
+        </div>
+
+        {% if searched %}
+        {% for announcement in filtered_announcements %}
+        <div class="{% cycle 'left-block' 'right-block' %}">
+            <p>{{ announcement.announcement_datetime }} {{ announcement.announcement_title }}</p>
+            <p>{{ announcement.announcement }}</p>
+        </div>
+        {% endfor %}
+        <div id="hiddenAnnouncements" style="display: none;" class="admin_announcement">
+            {% for announcement in announcements %}
+            <div class="{% cycle 'left-block' 'right-block' %}">
+                <p>{{ announcement.announcement_datetime }} {{ announcement.announcement_title }}</p>
+                <p>{{ announcement.announcement }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        {% for announcement in announcements %}
+        <div class="{% cycle 'left-block' 'right-block' %}">
+            <p>{{ announcement.announcement_datetime }} {{ announcement.announcement_title }}</p>
+            <p>{{ announcement.announcement }}</p>
+        </div>
+        {% if forloop.counter == 2 %}
+    </div>
+    <div id="hiddenAnnouncement" style="display: none;" class="admin_announcement">
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="button-container">
+    <a href="{% url 'upload' %}" class="button-link">
+        <button class="announcement-button">Upload Announcement</button>
+    </a>
+    <button onclick="showAllAnnouncements(); hideTopAnnouncements()" id="viewAllBtn2" class="announcement-button">View
+        All Announcement</button>
+</div>
+
+<div class="input-group">
+    <a href="{% url 'menu' %}"><button class="btn direct_back">Back</button></a>
+</div>
+
+{% endblock %}

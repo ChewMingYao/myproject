@@ -1,0 +1,80 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+{% load static %}
+<div class="header container"></div>
+    <h2>Booking Resource</h2>
+    {% for resource in resources %}
+        <div class="resource_booking_css" data-resource-id="{{ resource.resource_id }}">
+            <div class="image-container">
+                {% if resource.resource_image %}
+                    <img src="{{ resource.resource_image.url }}" alt="Resource Image">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+                <h3>{{ resource.resource_name }}</h3>
+            </div>
+
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+
+                <label for="datepicker">Choose a Date:</label>
+                <input type="date" name="date" id="datepicker" class="datepicker" value="{{ url_date }}">
+
+                <button type="submit" class="btn btn-success" onclick="bookResource('{{ resource.resource_id }}')">Book</button>
+                <p id="selectedDateDisplay_{{ resource.resource_id }}"></p>
+                <div class="js_timeSlot_checkbox">
+                    {% for slot_value, slot_label in form.time_slot.field.choices %}
+                        {% if slot_value in time_slots_available %}
+                            <input type="checkbox" name="time_slots" value="{{ slot_value }}"> {{ slot_label }}<br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+
+    <script>
+        document.getElementById('datepicker').addEventListener('change', function() {
+            var selectedDate = this.value;
+            var resourceElement = this.closest('.resource_booking_css');
+            var resourceId = resourceElement.dataset.resourceId;
+            var timeslot = resourceElement.dataset.available_time_slots;
+
+            fetchData(selectedDate, resourceId);
+                var redirectTo = "/resources_booking/" + resourceId + "/" + selectedDate + "/"; 
+                window.location.href = redirectTo;
+        });
+
+        function bookResource(resourceId) {
+            var selectedDate = document.getElementById('datePicker_' + resourceId).value;
+            var selectedTimeSlots = [];
+            var checkboxes = document.getElementsByName('time_slots');
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    selectedTimeSlots.push(checkbox.value);
+                }
+            });
+
+        }
+
+        function fetchData(selected_date, resourceId) {
+            $.ajax({
+                url: '/your_ajax_endpoint/',
+                data: {
+                    selected_date: selected_date,
+                    resource_id: resourceId
+                },
+                success: function(data) {
+                    document.querySelector(".js-try1").innerHTML = generateHTML(data);
+                }
+            });
+        }
+
+    </script>
+    {% endfor %}
+    <div class="input-group">
+        <button class="btn btn-secondary" onclick="goBack()">Back</button>
+    </div>
+</div>
+
+{% endblock %}

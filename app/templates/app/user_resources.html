@@ -1,0 +1,31 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+{%load static%}
+
+<div class="menu">
+    <div class="sport">
+        <a href="{% url 'resources_sports' %}">
+            <p>Sport</p>
+            <img src='{%static "app/image/sport.png" %}' alt="sport icon">
+        </a>
+        
+    </div>
+    <div class="learning">
+        <a href="{% url 'resources_learning' %}">
+            <p>Learning</p>
+            <img src='{%static "app/image/learning.png" %}' alt="learning icon">
+        </a>
+    </div>
+    <div class="entertainment">
+        <a href="{% url 'resources_entertainment' %}">
+            <p>Entertainment</p>
+            <img src='{%static "app/image/entertainment.png" %}' alt="entertainment icon">
+        </a>
+    </div>
+</div>
+<div class="check_booking">
+    <a href="{% url 'check_booking' %}"> Check Your Booking</a>
+</div>
+
+{% endblock %}

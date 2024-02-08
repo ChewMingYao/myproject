@@ -1,0 +1,128 @@
+﻿{% extends "app/user_layout.html" %}
+
+{% block content %}
+{% load static %}
+<div>
+    {% if is_user %}
+    <div class="jumbotron house-menu">
+        <h1 class="house-menu-title">GREEN VIEW APARTMENT</h1>
+    </div>
+
+    <div class="container row">
+        <div class="table-wrapper">
+            <div class="user-announcement">
+                <img src="{% static 'app/image/home.png' %}" class="house-menu-icon">
+                <h1 class="latest-news">Latest News</h1>
+                {% for announcement in announcements %}
+                <div class="{% cycle 'left-block' 'right-block' %}">
+                    <p>{{ announcement.announcement_datetime }} {{ announcement.announcement_title }}</p>
+                    <p>{{ announcement.announcement }}</p>
+                </div>
+                {% if forloop.counter == 2 %}
+            </div>
+            <div id="hiddenAnnouncement" style="display: none;" class="announcement">
+                {% endif %}
+                {% endfor %}
+            </div>
+            <button onclick="showAllAnnouncements()" id="viewAllBtn2" class="view-all-button">View All Announcements</button>
+        </div>
+    </div>
+    
+    <div class="green-view-section">
+        <h2 class="green-view-title">What is Green View?</h2>
+        <p class="green-view-description">
+            "Green view" can have various interpretations depending on the context. It might refer to an environmentally
+            friendly perspective, emphasizing sustainability and eco-friendly practices. In real estate or urban
+            planning, it could describe a property with abundant green spaces, promoting a connection to nature within
+            an urban setting. Alternatively, in the realm of technology or interface design, "green view" may denote a
+            visual representation or display that prominently features the color green, often used in software design or
+            user interfaces. The meaning of "green view" becomes clearer with additional information about the specific
+            industry or field in which the term is employed.
+        </p>
+
+        <div class="scrollable-image-container">
+            <img src="{% static 'app/image/home7.jpg' %}" class="house-menu-icon" style="width: 200px; height: 170px;">
+        </div>
+
+    </div>
+
+    <div class="green-view-section">
+        <h2 class="green-view-title">What can we do?</h2>
+        <p class="green-view-description">
+        <h2 class="menuh2">1. Booking Services:</h2>
+        <ul class="menuul">
+            <li>Facilitate online booking for various entities or amenities within the residential property.</li>
+            <li>Streamline the reservation process for common areas, meeting rooms, gyms, or other shared facilities.
+            </li>
+        </ul>
+
+        <h2 class="menuh2">2. Incident Report Management:</h2>
+        <ul class="menuul">
+            <li>Enable residents to upload incident reports through the system.</li>
+            <li>Centralize incident documentation to streamline communication and resolution processes.</li>
+        </ul>
+
+        <h2 class="menuh2">3. Fee Collection:</h2>
+        <ul class="menuul">
+            <li>Simplify the collection of fees, including rent, utilities, and additional charges.</li>
+            <li>Provide a seamless online platform for residents to make payments, improving overall financial
+                management.</li>
+        </ul>
+        </p>
+
+        <div class="scrollable-image-container">
+            <img src="{% static 'app/image/home9.png' %}" class="house-menu-icon" style="width: 200px; height: 170px;">
+        </div>
+    </div>
+
+    <div class="green-team-section">
+        <h2 class="green-view-title">Meet Our Team</h2>
+        <p class="green-view-description">Our dedicated team, comprised of four individuals, assumes collective
+            responsibility for the management and maintenance of our website. We extend an invitation to address any
+            inquiries or concerns you may have, assuring you that our team is well-equipped to provide comprehensive
+            assistance. Whether your questions pertain to web development intricacies, design aesthetics, content
+            creation, SEO optimization, or any other facet of our online presence, we are at your disposal. Please feel
+            free to share the specifics of your inquiry, and we will endeavor to offer tailored solutions and guidance
+            to ensure the optimal functioning and performance of our website.
+        </p>
+        <table border="1" class="menutable">
+            <thead>
+                <tr>
+                    <th class="thmenu">Student Name</th>
+                    <th class="thmenu">Student ID</th>
+                    <th class="thmenu">Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chew Ming Yao</td>
+                    <td>1211102825</td>
+                    <td><img src='{%static "app/image/Ming_Yao.png" %}' alt="Ming Yao" class="team-image"></td>
+                </tr>
+                <tr>
+                    <td>Siow Yee Ceng</td>
+                    <td>1211102017</td>
+                    <td><img src='{%static "app/image/YeeCeng.png" %}' alt="Yee Ceng" class="team-image"></td>
+                </tr>
+                <tr>
+                    <td>Tan Chi Lim</td>
+                    <td>1211101534</td>
+                    <td><img src='{%static "app/image/Chi_Lim.png" %}' alt="Chi Lim" class="team-image"></td>
+                </tr>
+                <tr>
+                    <td>Lo Pei Qin</td>
+                    <td>1211101157</td>
+                    <td><img src='{%static "app/image/Pei_Qin.png" %}' alt="Pei Qin" class="team-image"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="undefined-user">
+        <p>Undefined User.</p>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

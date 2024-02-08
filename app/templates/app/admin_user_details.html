@@ -1,0 +1,58 @@
+{% extends "app/admin_layout.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container row">
+    <div class="admin_user_details">
+        <form class="d-flex" role="search" method="POST" action="{% url 'search-post' %}">
+            {% csrf_token %}
+            <div>
+                <img src='{%static "app/image/search.png" %}' alt="search bar">
+                <input class="form-control me-2" type="search" placeholder="Search bar..." name="search_query" required
+                    aria-label="Search">
+            </div>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        {% if query %}
+        <div>
+            <div>
+                {% if posts %}
+                {% for post in posts %}
+
+
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <h2>User Details</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>Room Number</th>
+                    <th>Phone Number</th>
+                    <th>Number of Access Card</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.user }}</td>
+                    <td>{{ user.user_name }}</td>
+                    <td>{{ user.room_number }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td>{{ user.number_access_card }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="input-group">
+        <a href="{% url 'menu' %}"><button class="btn direct_back">Back</button></a>
+    </div>
+</div>
+
+{% endblock %}

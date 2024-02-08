@@ -1,0 +1,39 @@
+{% extends "app/admin_layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Edit Admin Details</h2>
+    <form method="post" id="editForm">
+        {% csrf_token %}
+        
+        <div class="input-group">
+            <span class="label">Phone Number:</span>
+            <span class="variable" style="margin-left: 85px;">{{ form.phone_number }}</span>
+        </div>
+        <button class="btn btn-primary" id="saveButton">Save Changes</button>
+        <div class="input-group">
+            <button class="btn btn-secondary" onclick="goBack()">Back</button>
+        </div>
+    </form>
+    <div id="toastBox"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let saveButton = document.getElementById('saveButton');
+        let editForm = document.getElementById('editForm');
+
+        saveButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            showSuccessPrompt();
+        });
+
+        function showSuccessPrompt(){
+            alert('Successfully updated ! ! !')
+            editForm.submit();
+        }
+    });
+</script>
+
+{% endblock %}

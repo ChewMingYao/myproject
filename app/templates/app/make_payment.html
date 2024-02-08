@@ -1,0 +1,28 @@
+{% extends "app/user_layout.html" %}
+{% block content %}
+{%load static%}
+<div class="container">
+    <h2>Make Payment</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if error_message %}
+        <div class="error-msg" style="display: none;">{{ error_message }}</div>
+        {% endif %}
+        <button class="btn btn-secondary" type="submit">Make Payment</button>
+    </form>
+    <div class="input-group">
+        <button class="btn btn-secondary" onclick="goBack()">Back</button>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const errorMsg = document.querySelector('.error-msg');
+
+        if (errorMsg) {
+            alert(errorMsg.innerText);
+        }
+    });
+</script>
+{% endblock %}

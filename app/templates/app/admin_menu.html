@@ -1,0 +1,51 @@
+﻿{% extends "app/admin_layout.html" %}
+
+{% block content %}
+{% load static %}
+<div class="admin-menu-container">
+    {% if is_admin %}
+    <h2 class="admin-menu-title">Admin Menu</h2>
+
+    <ul class="admin-menu-list">
+        <li>
+            <form class="admin-menu-item" action='admin_payment' method='GET'>
+                <button type="submit" class="btn btn-custom">Payment</button>
+            </form>
+            <img src='{%static "app/image/payment.png" %}' alt="payment" class="menu-item-image">
+        </li>
+
+        <li>
+            <form class="admin-menu-item" action='admin_resources' method='GET'>
+                <button type="submit" class="btn btn-custom">Resources</button>
+            </form>
+            <img src='{%static "app/image/resources.png" %}' alt="resources" class="menu-item-image">
+        </li>
+
+
+        <li>
+            <form class="admin-menu-item" action="{% url 'admin_announcement' %}" method='GET'>
+                <button type="submit" class="btn btn-custom">Announcement</button>
+            </form>
+            <img src='{%static "app/image/announcement.png" %}' alt="announcement" class="menu-item-image">
+        </li>
+
+        <li>
+            <form class="admin-menu-item" action='admin_incident' method='GET'>
+                <button type="submit" class="btn btn-custom">Incident Report</button>
+            </form>
+            <img src='{%static "app/image/incident.png" %}' alt="incident" class="menu-item-image">
+        </li>
+
+        <li>
+            <form class="admin-menu-item" action='admin_user_details' method='GET'>
+                <button type="submit" class="btn btn-custom">User Details</button>
+            </form>
+            <img src='{%static "app/image/user_details.png" %}' alt="user_details" class="menu-item-image">
+        </li>
+    </ul>
+
+    {% else %}
+    <p class="undefined-user">Undefined User.</p>
+    {% endif %}
+</div>
+{% endblock %}

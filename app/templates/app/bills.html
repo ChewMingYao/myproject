@@ -1,0 +1,49 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+
+<div class="container row">
+    <div class="bills">
+        <h2>Bills</h2>
+        <div class="table-wrapper">
+            <table border="1">
+                <tr>
+                    <th>Bill ID</th>
+                    <th>Due Date</th>
+                    <th>Bill type</th>
+                    <th>Recipient</th>
+                    <th>Total Payment</th>
+                    <th>Payment Amount</th>
+                    <th>Remark</th>
+                    <th>Date Done Payment</th>
+                    <th>Transaction Status</th>
+                </tr>
+                {% for bill in bills %}
+                {% for payment in bill.payment_set.all %}
+                <tr>
+                    <td>{{ bill.bill_id }}</td>
+                    <td>{{ bill.due_date }}</td>
+                    <td>{{ payment.bill_type }}</td>
+                    <td>{{ payment.recipient_name }}</td>
+                    <td>{{ payment.total_payment }}</td>
+                    <td>{{ payment.payment_amount }}</td>
+                    <td>{{ payment.remark }}</td>
+                    <td>{{ payment.payment_date }}</td>
+                    <td>
+                        {% if payment.transaction_status == "Not Paid Yet" %}
+                        <a href="{% url 'make_payment' bill_id=bill.bill_id bill_type=payment.bill_type total_payment=payment.total_payment|stringformat:"f" %}">Not Paid Yet</a>
+                        {% elif payment.transaction_status == "Insufficient" %}
+                        <a href="{% url 'make_payment' bill_id=bill.bill_id bill_type=payment.bill_type total_payment=payment.total_payment|stringformat:"f" %}">Insufficient</a>
+                        {% else %}
+                        Successful
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{%load static%}
+
+<div class="move-right">
+    {% for announcement in announcements %}
+    <div class="{% cycle 'left-block' 'right-block' %}">
+        <h2>GREEN VIEW APPARTMENT</h2>
+        <p>{{ announcement.announcement_datetime }} {{ announcement.announcement_title }}</p>
+        <p>{{ announcement.announcement }}</p>
+    </div>
+    {% if forloop.counter == 1 %}
+
+    <div id="hiddenAnnouncement" style="display: none;" class="announcement">
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="guess-container">
+    <div class="guest-left">
+        <h1 class="title2">What is Green View Apartment?</h1>
+        <p class="subtitle">If you are inquiring about the facilities available in Green View Apartment, here's an
+            overview:</p>
+
+        <div class="facility-category">
+            <h2 class="facility-heading">Study Facilities:</h2>
+            <ul class="facility-list">
+                <li>Study Rooms or Study Areas: Spaces for residents to focus on academic or professional work.</li>
+                <li>Wi-Fi Connectivity: Providing reliable internet for remote work and study.</li>
+            </ul>
+        </div>
+
+        <div class="facility-category">
+            <h2 class="facility-heading">Sports Facilities:</h2>
+            <ul class="facility-list">
+                <li>Gymnasium: Equipped fitness center for residents.</li>
+                <li>Sports Courts: Facilities for basketball, tennis, and other activities.</li>
+            </ul>
+        </div>
+
+        <div class="facility-category">
+            <h2 class="facility-heading">Entertainment Facilities:</h2>
+            <ul class="facility-list">
+                <li>Recreation Rooms: Spaces for leisure activities and games.</li>
+                <li>Entertainment Lounge: Common area for events and socializing.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="guess-right">
+        <div class="photo-slider">
+            <img src="{%static 'app/image/home3.jpg' %}" alt="Image 1">
+            <img src="{%static 'app/image/home4.jpg' %}" alt="Image 2">
+            <img src="{%static 'app/image/home5.jpg' %}" alt="Image 3">
+            <img src="{%static 'app/image/home6.jpg' %}" alt="Image 3">
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container">
+    <div class="new-part">
+        <div class="feed-header">
+            <h1>Welcome to Green View</h1>
+            <p>Always be Prepared</p>
+        </div>
+
+        <div class="background-image">
+            <div class="overlay">
+                <img src="{%static 'app/image/home8.jpg' %}" alt="" class="bg-img">
+            </div>
+        </div>
+
+        <div class="feed-content">
+            <h2 class="containh2">About Us</h2>
+            <p class="containp">The mighthy Group 2 from Multimedia University is always be prepared to serve you in
+                Green View Company. What we did is all for your brighter future for the new Gen Z.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

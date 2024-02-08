@@ -1,0 +1,34 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+
+<div class="container row">
+    <div class="user_details">
+        <h2>User Details</h2>
+        <div class="input-group">
+            <span class="label">User ID:</span>
+            <span class="variable" style="margin-left: 140px;">{{ users.user.username }}</span>
+        </div>
+        <div class="input-group">
+            <span class="label">User Name:</span>
+            <span class="variable" style="margin-left: 115px;">{{ users.user_name }}</span>
+        </div>
+        <div class="input-group">
+            <span class="label">Room Number:</span>
+            <span class="variable" style="margin-left: 89px;">{{ users.room_number }}</span>
+        </div>
+        <div class="input-group">
+            <span class="label">Phone Number:</span>
+            <span class="variable" style="margin-left: 85px;">{{ users.phone_number }}</span>
+        </div>
+        <div class="input-group">
+            <span class="label">Number of Access Card:</span>
+            <span class="variable" style="margin-left: 23px;">{{ users.number_access_card }}</span>
+        </div>
+        <div class="input-group">
+            <a href="{% url 'edit_user_details' %}" class="btn btn-primary">Edit Details</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

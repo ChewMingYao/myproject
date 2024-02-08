@@ -1,0 +1,50 @@
+{% extends "app/user_layout.html" %}
+
+{% block content %}
+
+<div class="container row">
+    <div class="incident">
+        <h2>Incident Report</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="left-block">
+                <div class="input-group">
+                    Description of Incident: {{ form.description }}
+                    {% if form.description.errors %}
+                    <div class="error">{{ form.description.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    Image of Incident: {{ form.incident_image }}
+                    {% if form.incident_image.errors %}
+                    <div class="error">{{ form.incident_image.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    Location: {{ form.location }}
+                    {% if form.location.errors %}
+                    <div class="error">{{ form.location.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    Reported By: {{ form.reported_by }}
+                    {% if form.reported_by.errors %}
+                    <div class="error">{{ form.reported_by.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    Date: {{ form.incident_date }}
+                    {% if form.incident_date.errors %}
+                    <div class="error">{{ form.incident_date.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Upload</button>
+        </form>
+        <div class="input-group">
+            <button class="btn btn-secondary" onclick="goBack()">Back</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
